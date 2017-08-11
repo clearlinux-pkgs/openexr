@@ -1,0 +1,20 @@
+--- openexr-1.4.0/exrmaketiled/main.cpp~	2004-12-07 01:49:33.000000000 +0000
++++ openexr-1.4.0/exrmaketiled/main.cpp	2017-08-11 20:24:41.134830352 +0000
+@@ -46,6 +46,7 @@
+ #include <exception>
+ #include <string>
+ #include <stdlib.h>
++#include <string.h>
+ 
+ using namespace Imf;
+ using namespace std;
+--- openexr-1.4.0/exrenvmap/main.cpp~	2004-03-23 04:23:39.000000000 +0000
++++ openexr-1.4.0/exrenvmap/main.cpp	2017-08-11 20:27:55.706795573 +0000
+@@ -45,6 +45,7 @@
+ #include <iostream>
+ #include <exception>
+ #include <stdlib.h>
++#include <string.h>
+ 
+ using namespace Imf;
+ using namespace std;
