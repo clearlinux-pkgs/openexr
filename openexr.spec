@@ -6,7 +6,7 @@
 #
 Name     : openexr
 Version  : 1.4.0
-Release  : 3
+Release  : 4
 URL      : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz
 Source0  : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz
 Source99 : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz.sig
@@ -73,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1502485178
+export SOURCE_DATE_EPOCH=1502485501
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -82,7 +82,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition 
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1502485178
+export SOURCE_DATE_EPOCH=1502485501
 rm -rf %{buildroot}
 %make_install
 
@@ -117,44 +117,47 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/OpenEXR/Iex.h
-/usr/include/OpenEXR/IexBaseExc.h
-/usr/include/OpenEXR/IexErrnoExc.h
-/usr/include/OpenEXR/IexMacros.h
-/usr/include/OpenEXR/IexMathExc.h
-/usr/include/OpenEXR/IexThrowErrnoExc.h
-/usr/include/OpenEXR/IlmThread.h
-/usr/include/OpenEXR/IlmThreadMutex.h
-/usr/include/OpenEXR/IlmThreadPool.h
-/usr/include/OpenEXR/IlmThreadSemaphore.h
-/usr/include/OpenEXR/ImathBox.h
-/usr/include/OpenEXR/ImathBoxAlgo.h
-/usr/include/OpenEXR/ImathColor.h
-/usr/include/OpenEXR/ImathColorAlgo.h
-/usr/include/OpenEXR/ImathEuler.h
-/usr/include/OpenEXR/ImathExc.h
-/usr/include/OpenEXR/ImathFrame.h
-/usr/include/OpenEXR/ImathFrustum.h
-/usr/include/OpenEXR/ImathFun.h
-/usr/include/OpenEXR/ImathGL.h
-/usr/include/OpenEXR/ImathGLU.h
-/usr/include/OpenEXR/ImathHalfLimits.h
-/usr/include/OpenEXR/ImathInterval.h
-/usr/include/OpenEXR/ImathLimits.h
-/usr/include/OpenEXR/ImathLine.h
-/usr/include/OpenEXR/ImathLineAlgo.h
-/usr/include/OpenEXR/ImathMath.h
-/usr/include/OpenEXR/ImathMatrix.h
-/usr/include/OpenEXR/ImathMatrixAlgo.h
-/usr/include/OpenEXR/ImathPlane.h
-/usr/include/OpenEXR/ImathPlatform.h
-/usr/include/OpenEXR/ImathQuat.h
-/usr/include/OpenEXR/ImathRandom.h
-/usr/include/OpenEXR/ImathRoots.h
-/usr/include/OpenEXR/ImathShear.h
-/usr/include/OpenEXR/ImathSphere.h
-/usr/include/OpenEXR/ImathVec.h
-/usr/include/OpenEXR/ImathVecAlgo.h
+%exclude /usr/include/OpenEXR/Iex.h
+%exclude /usr/include/OpenEXR/IexBaseExc.h
+%exclude /usr/include/OpenEXR/IexErrnoExc.h
+%exclude /usr/include/OpenEXR/IexMacros.h
+%exclude /usr/include/OpenEXR/IexMathExc.h
+%exclude /usr/include/OpenEXR/IexThrowErrnoExc.h
+%exclude /usr/include/OpenEXR/IlmThread.h
+%exclude /usr/include/OpenEXR/IlmThreadMutex.h
+%exclude /usr/include/OpenEXR/IlmThreadPool.h
+%exclude /usr/include/OpenEXR/IlmThreadSemaphore.h
+%exclude /usr/include/OpenEXR/ImathBox.h
+%exclude /usr/include/OpenEXR/ImathBoxAlgo.h
+%exclude /usr/include/OpenEXR/ImathColor.h
+%exclude /usr/include/OpenEXR/ImathColorAlgo.h
+%exclude /usr/include/OpenEXR/ImathEuler.h
+%exclude /usr/include/OpenEXR/ImathExc.h
+%exclude /usr/include/OpenEXR/ImathFrame.h
+%exclude /usr/include/OpenEXR/ImathFrustum.h
+%exclude /usr/include/OpenEXR/ImathFun.h
+%exclude /usr/include/OpenEXR/ImathGL.h
+%exclude /usr/include/OpenEXR/ImathGLU.h
+%exclude /usr/include/OpenEXR/ImathHalfLimits.h
+%exclude /usr/include/OpenEXR/ImathInterval.h
+%exclude /usr/include/OpenEXR/ImathLimits.h
+%exclude /usr/include/OpenEXR/ImathLine.h
+%exclude /usr/include/OpenEXR/ImathLineAlgo.h
+%exclude /usr/include/OpenEXR/ImathMath.h
+%exclude /usr/include/OpenEXR/ImathMatrix.h
+%exclude /usr/include/OpenEXR/ImathMatrixAlgo.h
+%exclude /usr/include/OpenEXR/ImathPlane.h
+%exclude /usr/include/OpenEXR/ImathPlatform.h
+%exclude /usr/include/OpenEXR/ImathQuat.h
+%exclude /usr/include/OpenEXR/ImathRandom.h
+%exclude /usr/include/OpenEXR/ImathRoots.h
+%exclude /usr/include/OpenEXR/ImathShear.h
+%exclude /usr/include/OpenEXR/ImathSphere.h
+%exclude /usr/include/OpenEXR/ImathVec.h
+%exclude /usr/include/OpenEXR/ImathVecAlgo.h
+%exclude /usr/include/OpenEXR/half.h
+%exclude /usr/include/OpenEXR/halfFunction.h
+%exclude /usr/include/OpenEXR/halfLimits.h
 /usr/include/OpenEXR/ImfArray.h
 /usr/include/OpenEXR/ImfAttribute.h
 /usr/include/OpenEXR/ImfBoxAttribute.h
@@ -208,9 +211,6 @@ rm -rf %{buildroot}
 /usr/include/OpenEXR/ImfWav.h
 /usr/include/OpenEXR/ImfXdr.h
 /usr/include/OpenEXR/OpenEXRConfig.h
-/usr/include/OpenEXR/half.h
-/usr/include/OpenEXR/halfFunction.h
-/usr/include/OpenEXR/halfLimits.h
 /usr/lib64/libHalf.so
 /usr/lib64/libIex.so
 /usr/lib64/libIlmImf.so
