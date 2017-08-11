@@ -6,7 +6,7 @@
 #
 Name     : openexr
 Version  : 1.4.0
-Release  : 2
+Release  : 3
 URL      : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz
 Source0  : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz
 Source99 : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz.sig
@@ -17,6 +17,7 @@ Requires: openexr-bin
 Requires: openexr-lib
 Requires: openexr-data
 BuildRequires : fltk-dev
+BuildRequires : ilmbase-dev
 BuildRequires : zlib-dev
 Patch1: build.patch
 
@@ -72,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1502483696
+export SOURCE_DATE_EPOCH=1502485178
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -81,7 +82,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition 
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1502483696
+export SOURCE_DATE_EPOCH=1502485178
 rm -rf %{buildroot}
 %make_install
 
