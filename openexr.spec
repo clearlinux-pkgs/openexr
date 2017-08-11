@@ -6,7 +6,7 @@
 #
 Name     : openexr
 Version  : 1.4.0
-Release  : 4
+Release  : 5
 URL      : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz
 Source0  : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz
 Source99 : http://download.savannah.nongnu.org/releases/openexr/openexr-1.4.0a.tar.gz.sig
@@ -73,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1502485501
+export SOURCE_DATE_EPOCH=1502485772
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -82,7 +82,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition 
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1502485501
+export SOURCE_DATE_EPOCH=1502485772
 rm -rf %{buildroot}
 %make_install
 
@@ -158,6 +158,10 @@ rm -rf %{buildroot}
 %exclude /usr/include/OpenEXR/half.h
 %exclude /usr/include/OpenEXR/halfFunction.h
 %exclude /usr/include/OpenEXR/halfLimits.h
+%exclude /usr/lib64/libHalf.so
+%exclude /usr/lib64/libIex.so
+%exclude /usr/lib64/libIlmThread.so
+%exclude /usr/lib64/libImath.so
 /usr/include/OpenEXR/ImfArray.h
 /usr/include/OpenEXR/ImfAttribute.h
 /usr/include/OpenEXR/ImfBoxAttribute.h
@@ -211,11 +215,7 @@ rm -rf %{buildroot}
 /usr/include/OpenEXR/ImfWav.h
 /usr/include/OpenEXR/ImfXdr.h
 /usr/include/OpenEXR/OpenEXRConfig.h
-/usr/lib64/libHalf.so
-/usr/lib64/libIex.so
 /usr/lib64/libIlmImf.so
-/usr/lib64/libIlmThread.so
-/usr/lib64/libImath.so
 /usr/lib64/pkgconfig/OpenEXR.pc
 /usr/share/aclocal/*.m4
 

@@ -41,4 +41,7 @@
 /usr/include/OpenEXR/ImathLimits.h
 /usr/include/OpenEXR/halfFunction.h
 /usr/include/OpenEXR/ImathColorAlgo.h
-
+/usr/lib64/libHalf.so
+/usr/lib64/libIex.so
+/usr/lib64/libIlmThread.so
+/usr/lib64/libImath.so 
