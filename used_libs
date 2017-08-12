@@ -1,3 +1,8 @@
+libHalf.so.10
+libIex-2_0.so.10
+libIexMath-2_0.so.10
+libIlmThread-2_0.so.10
+libImath-2_0.so.10
 libc.so.6
 libgcc_s.so.1
 libm.so.6
