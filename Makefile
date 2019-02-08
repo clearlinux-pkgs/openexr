@@ -1,5 +1,5 @@
 PKG_NAME := openexr
-URL = http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.1.tar.gz
+URL = https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
