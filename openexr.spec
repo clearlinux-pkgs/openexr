@@ -6,7 +6,7 @@
 #
 Name     : openexr
 Version  : 2.3.0
-Release  : 10
+Release  : 12
 URL      : https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
 Source0  : https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
 Source99 : https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz.sig
@@ -21,6 +21,7 @@ BuildRequires : fltk-dev
 BuildRequires : ilmbase-dev
 BuildRequires : pkgconfig(zlib)
 BuildRequires : zlib-dev
+Patch1: CVE-2018-18444.patch
 
 %description
 The IlmImfUtil Library
@@ -44,6 +45,7 @@ Group: Development
 Requires: openexr-lib = %{version}-%{release}
 Requires: openexr-bin = %{version}-%{release}
 Provides: openexr-devel = %{version}-%{release}
+Requires: openexr = %{version}-%{release}
 
 %description dev
 dev components for the openexr package.
@@ -76,22 +78,24 @@ license components for the openexr package.
 
 %prep
 %setup -q -n openexr-2.3.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549588771
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export SOURCE_DATE_EPOCH=1561598523
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1549588771
+export SOURCE_DATE_EPOCH=1561598523
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openexr
 cp LICENSE %{buildroot}/usr/share/package-licenses/openexr/LICENSE
