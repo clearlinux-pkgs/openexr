@@ -1,5 +1,5 @@
 PKG_NAME := openexr
-URL = https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz
+URL = https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
