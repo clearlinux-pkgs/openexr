@@ -6,7 +6,7 @@
 #
 Name     : openexr
 Version  : 2.5.3
-Release  : 15
+Release  : 16
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz
 Source1  : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz.sig
@@ -16,9 +16,11 @@ License  : BSD-3-Clause
 Requires: openexr-bin = %{version}-%{release}
 Requires: openexr-lib = %{version}-%{release}
 Requires: openexr-license = %{version}-%{release}
+Requires: openexr-python = %{version}-%{release}
+Requires: openexr-python3 = %{version}-%{release}
 BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
-BuildRequires : extra-cmake-modules pkgconfig(OpenEXR)
+BuildRequires : extra-cmake-modules
 BuildRequires : fltk-dev
 BuildRequires : freeglut-dev
 BuildRequires : glibc-dev
@@ -81,6 +83,24 @@ Group: Default
 license components for the openexr package.
 
 
+%package python
+Summary: python components for the openexr package.
+Group: Default
+Requires: openexr-python3 = %{version}-%{release}
+
+%description python
+python components for the openexr package.
+
+
+%package python3
+Summary: python3 components for the openexr package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the openexr package.
+
+
 %prep
 %setup -q -n openexr-2.5.3
 cd %{_builddir}/openexr-2.5.3
@@ -90,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1608045325
+export SOURCE_DATE_EPOCH=1608049325
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -103,7 +123,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1608045325
+export SOURCE_DATE_EPOCH=1608049325
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openexr
 cp %{_builddir}/openexr-2.5.3/LICENSE.md %{buildroot}/usr/share/package-licenses/openexr/ce40fed41edcb2473538bb84f85ff79e585760b5
@@ -284,6 +304,48 @@ popd
 /usr/include/OpenEXR/ImfWav.h
 /usr/include/OpenEXR/ImfXdr.h
 /usr/include/OpenEXR/OpenEXRConfig.h
+/usr/include/OpenEXR/PyIex.h
+/usr/include/OpenEXR/PyIexExport.h
+/usr/include/OpenEXR/PyIexTypeTranslator.h
+/usr/include/OpenEXR/PyImath.h
+/usr/include/OpenEXR/PyImathAutovectorize.h
+/usr/include/OpenEXR/PyImathBasicTypes.h
+/usr/include/OpenEXR/PyImathBox.h
+/usr/include/OpenEXR/PyImathBoxArrayImpl.h
+/usr/include/OpenEXR/PyImathColor.h
+/usr/include/OpenEXR/PyImathColor3ArrayImpl.h
+/usr/include/OpenEXR/PyImathColor4Array2DImpl.h
+/usr/include/OpenEXR/PyImathColor4ArrayImpl.h
+/usr/include/OpenEXR/PyImathDecorators.h
+/usr/include/OpenEXR/PyImathEuler.h
+/usr/include/OpenEXR/PyImathExport.h
+/usr/include/OpenEXR/PyImathFixedArray.h
+/usr/include/OpenEXR/PyImathFixedArray2D.h
+/usr/include/OpenEXR/PyImathFixedMatrix.h
+/usr/include/OpenEXR/PyImathFixedVArray.h
+/usr/include/OpenEXR/PyImathFrustum.h
+/usr/include/OpenEXR/PyImathFun.h
+/usr/include/OpenEXR/PyImathLine.h
+/usr/include/OpenEXR/PyImathM44Array.h
+/usr/include/OpenEXR/PyImathMathExc.h
+/usr/include/OpenEXR/PyImathMatrix.h
+/usr/include/OpenEXR/PyImathOperators.h
+/usr/include/OpenEXR/PyImathPlane.h
+/usr/include/OpenEXR/PyImathQuat.h
+/usr/include/OpenEXR/PyImathRandom.h
+/usr/include/OpenEXR/PyImathShear.h
+/usr/include/OpenEXR/PyImathStringArray.h
+/usr/include/OpenEXR/PyImathStringArrayRegister.h
+/usr/include/OpenEXR/PyImathStringTable.h
+/usr/include/OpenEXR/PyImathTask.h
+/usr/include/OpenEXR/PyImathUtil.h
+/usr/include/OpenEXR/PyImathVec.h
+/usr/include/OpenEXR/PyImathVec2Impl.h
+/usr/include/OpenEXR/PyImathVec3ArrayImpl.h
+/usr/include/OpenEXR/PyImathVec3Impl.h
+/usr/include/OpenEXR/PyImathVec4ArrayImpl.h
+/usr/include/OpenEXR/PyImathVec4Impl.h
+/usr/include/OpenEXR/PyImathVecOperators.h
 /usr/include/OpenEXR/half.h
 /usr/include/OpenEXR/halfExport.h
 /usr/include/OpenEXR/halfFunction.h
@@ -296,6 +358,9 @@ popd
 /usr/lib64/cmake/OpenEXR/OpenEXRConfigVersion.cmake
 /usr/lib64/cmake/OpenEXR/OpenEXRTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/OpenEXR/OpenEXRTargets.cmake
+/usr/lib64/cmake/PyIlmBase/PyIlmBaseConfig-relwithdebinfo.cmake
+/usr/lib64/cmake/PyIlmBase/PyIlmBaseConfig.cmake
+/usr/lib64/cmake/PyIlmBase/PyIlmBaseConfigVersion.cmake
 /usr/lib64/libHalf-2_5.so
 /usr/lib64/libHalf.so
 /usr/lib64/libIex-2_5.so
@@ -310,8 +375,11 @@ popd
 /usr/lib64/libIlmThread.so
 /usr/lib64/libImath-2_5.so
 /usr/lib64/libImath.so
+/usr/lib64/libPyIex_Python3_9-2_5.so
+/usr/lib64/libPyImath_Python3_9-2_5.so
 /usr/lib64/pkgconfig/IlmBase.pc
 /usr/lib64/pkgconfig/OpenEXR.pc
+/usr/lib64/pkgconfig/PyIlmBase.pc
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -354,7 +422,18 @@ popd
 /usr/lib64/libIlmThread-2_5.so.25.0.2
 /usr/lib64/libImath-2_5.so.25
 /usr/lib64/libImath-2_5.so.25.0.2
+/usr/lib64/libPyIex_Python3_9-2_5.so.25
+/usr/lib64/libPyIex_Python3_9-2_5.so.25.0.2
+/usr/lib64/libPyImath_Python3_9-2_5.so.25
+/usr/lib64/libPyImath_Python3_9-2_5.so.25.0.2
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/openexr/ce40fed41edcb2473538bb84f85ff79e585760b5
+
+%files python
+%defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*

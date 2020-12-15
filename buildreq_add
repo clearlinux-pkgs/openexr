@@ -2,3 +2,4 @@
 # picked up automatically. One name per line, no whitespace.
 fltk-dev
 zlib-dev
+extra-cmake-modules
