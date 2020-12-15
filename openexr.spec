@@ -6,7 +6,7 @@
 #
 Name     : openexr
 Version  : 2.5.3
-Release  : 13
+Release  : 14
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz
 Source1  : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.3/openexr-2.5.3.tar.gz.sig
