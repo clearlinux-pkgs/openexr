@@ -4,7 +4,7 @@
 #
 Name     : openexr
 Version  : 2.5.5
-Release  : 18
+Release  : 19
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.5/openexr-2.5.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.5/openexr-2.5.5.tar.gz
 Summary  : Python bindings for the IlmBase libraries
