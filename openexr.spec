@@ -4,7 +4,7 @@
 #
 Name     : openexr
 Version  : 2.5.5
-Release  : 20
+Release  : 21
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.5/openexr-2.5.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v2.5.5/openexr-2.5.5.tar.gz
 Summary  : Python bindings for the IlmBase libraries
@@ -107,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1613156323
+export SOURCE_DATE_EPOCH=1622066134
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -120,13 +120,15 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1613156323
+export SOURCE_DATE_EPOCH=1622066134
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openexr
 cp %{_builddir}/openexr-2.5.5/LICENSE.md %{buildroot}/usr/share/package-licenses/openexr/ce40fed41edcb2473538bb84f85ff79e585760b5
 pushd clr-build
 %make_install
 popd
+## Remove excluded files
+rm -f %{buildroot}/usr/lib64/libImath.so
 
 %files
 %defattr(-,root,root,-)
@@ -371,7 +373,6 @@ popd
 /usr/lib64/libIlmThread-2_5.so
 /usr/lib64/libIlmThread.so
 /usr/lib64/libImath-2_5.so
-/usr/lib64/libImath.so
 /usr/lib64/libPyIex_Python3_9-2_5.so
 /usr/lib64/libPyImath_Python3_9-2_5.so
 /usr/lib64/pkgconfig/IlmBase.pc
