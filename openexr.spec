@@ -4,7 +4,7 @@
 #
 Name     : openexr
 Version  : 3.0.5
-Release  : 25
+Release  : 26
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.0.5/openexr-3.0.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.0.5/openexr-3.0.5.tar.gz
 Summary  : OpenEXR image library
