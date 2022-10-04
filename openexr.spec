@@ -4,7 +4,7 @@
 #
 Name     : openexr
 Version  : 3.1.5
-Release  : 27
+Release  : 28
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.5/openexr-3.1.5.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.5/openexr-3.1.5.tar.gz
 Summary  : OpenEXR image library
@@ -83,23 +83,23 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654716826
+export SOURCE_DATE_EPOCH=1664922062
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1654716826
+export SOURCE_DATE_EPOCH=1664922062
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openexr
-cp %{_builddir}/openexr-3.1.5/LICENSE.md %{buildroot}/usr/share/package-licenses/openexr/bb1da2f934217470d772d2a42fc838fe268e3eb9
+cp %{_builddir}/openexr-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/openexr/bb1da2f934217470d772d2a42fc838fe268e3eb9 || :
 pushd clr-build
 %make_install
 popd
