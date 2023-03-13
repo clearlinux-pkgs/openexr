@@ -3593,6 +3593,7 @@ libOpenEXR-3_1.so.30:_ZN7Imf_3_113RgbaInputFileC2ERNS_7IStreamEi
 libOpenEXR-3_1.so.30:_ZN7Imf_3_113RgbaInputFileD0Ev
 libOpenEXR-3_1.so.30:_ZN7Imf_3_113RgbaInputFileD1Ev
 libOpenEXR-3_1.so.30:_ZN7Imf_3_113RgbaInputFileD2Ev
+libOpenEXR-3_1.so.30:_ZN7Imf_3_113WidenFilenameB5cxx11EPKc
 libOpenEXR-3_1.so.30:_ZN7Imf_3_113addIDManifestERNS_6HeaderERKNS_20CompressedIDManifestE
 libOpenEXR-3_1.so.30:_ZN7Imf_3_113addWorldToNDCERNS_6HeaderERKN9Imath_3_18Matrix44IfEE
 libOpenEXR-3_1.so.30:_ZN7Imf_3_113defaultFormatEPNS_10CompressorE
