@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : openexr
-Version  : 3.1.7
-Release  : 30
-URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.7/openexr-3.1.7.tar.gz
-Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.7/openexr-3.1.7.tar.gz
+Version  : 3.1.8
+Release  : 31
+URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.8/openexr-3.1.8.tar.gz
+Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.8/openexr-3.1.8.tar.gz
 Summary  : OpenEXR image library
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -80,43 +80,70 @@ license components for the openexr package.
 
 
 %prep
-%setup -q -n openexr-3.1.7
-cd %{_builddir}/openexr-3.1.7
+%setup -q -n openexr-3.1.8
+cd %{_builddir}/openexr-3.1.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680193611
+export SOURCE_DATE_EPOCH=1686070708
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -Wl,-z,x86-64-v3 -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680193611
+export SOURCE_DATE_EPOCH=1686070708
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/openexr
 cp %{_builddir}/openexr-%{version}/LICENSE.md %{buildroot}/usr/share/package-licenses/openexr/8bdba5713cb211c07a30241ee1d0a9c668f071cd || :
 cp %{_builddir}/openexr-%{version}/docs/license.rst %{buildroot}/usr/share/package-licenses/openexr/abe6364c70643c16b35007073306461670b47181 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib64/libImath.so
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/exr2aces
+/V3/usr/bin/exrenvmap
+/V3/usr/bin/exrheader
+/V3/usr/bin/exrinfo
+/V3/usr/bin/exrmakepreview
+/V3/usr/bin/exrmaketiled
+/V3/usr/bin/exrmultipart
+/V3/usr/bin/exrmultiview
+/V3/usr/bin/exrstdattr
 /usr/bin/exr2aces
 /usr/bin/exrenvmap
 /usr/bin/exrheader
@@ -305,16 +332,21 @@ rm -f %{buildroot}*/usr/lib64/libImath.so
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libIex-3_1.so.30.8.1
+/V3/usr/lib64/libIlmThread-3_1.so.30.8.1
+/V3/usr/lib64/libOpenEXR-3_1.so.30.8.1
+/V3/usr/lib64/libOpenEXRCore-3_1.so.30.8.1
+/V3/usr/lib64/libOpenEXRUtil-3_1.so.30.8.1
 /usr/lib64/libIex-3_1.so.30
-/usr/lib64/libIex-3_1.so.30.7.1
+/usr/lib64/libIex-3_1.so.30.8.1
 /usr/lib64/libIlmThread-3_1.so.30
-/usr/lib64/libIlmThread-3_1.so.30.7.1
+/usr/lib64/libIlmThread-3_1.so.30.8.1
 /usr/lib64/libOpenEXR-3_1.so.30
-/usr/lib64/libOpenEXR-3_1.so.30.7.1
+/usr/lib64/libOpenEXR-3_1.so.30.8.1
 /usr/lib64/libOpenEXRCore-3_1.so.30
-/usr/lib64/libOpenEXRCore-3_1.so.30.7.1
+/usr/lib64/libOpenEXRCore-3_1.so.30.8.1
 /usr/lib64/libOpenEXRUtil-3_1.so.30
-/usr/lib64/libOpenEXRUtil-3_1.so.30.7.1
+/usr/lib64/libOpenEXRUtil-3_1.so.30.8.1
 
 %files license
 %defattr(0644,root,root,0755)
