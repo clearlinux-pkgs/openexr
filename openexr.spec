@@ -5,7 +5,7 @@
 #
 Name     : openexr
 Version  : 3.1.8
-Release  : 31
+Release  : 32
 URL      : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.8/openexr-3.1.8.tar.gz
 Source0  : https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.8/openexr-3.1.8.tar.gz
 Summary  : OpenEXR image library
